@@ -5,9 +5,9 @@ const Feature = () => {
     return (
         <View style={styles.featureContainer}>
             <TouchableOpacity style={styles.featureCard}>
-                <ImageBackground source={require("../assets/images/locations/1.jpg")} resizeMode="cover" style={styles.image}>
+                <ImageBackground source={require("../../assets/images/locations/1.jpg")} resizeMode="cover" style={styles.image}>
                     <View style={styles.blackBottom}>
-                        <Text style={styles.featureText}>Get inside of you best vacation trip ever</Text>
+                        <Text style={styles.featureText}>Get inside of your best vacation trip ever</Text>
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     featureCard: {
         backgroundColor: "#4cc9f0",
         borderRadius: 10,
-        borderWidth: 3,
+        borderWidth: 0,
         flex: 1,
         overflow: "hidden",
     },

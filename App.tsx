@@ -2,16 +2,17 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import TopBar from "./components/TopBar";
-import Feature from "./components/Feature";
-import NextTrip from "./components/NextTrip";
+import { Banner, Feature, NextTrip, List } from "./components/index";
 
 export default function App() {
     return (
         <>
             <TopBar />
+            <Banner />
             <ScrollView style={styles.ScrollViewContainer}>
                 <Feature />
                 <NextTrip />
+                <List />
             </ScrollView>
             <StatusBar style="light" />
         </>
