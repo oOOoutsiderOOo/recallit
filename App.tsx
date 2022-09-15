@@ -1,34 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import TopBar from "./components/TopBar";
-import { Banner, Feature, NextTrip, List } from "./components/index";
+import { Banner, TopBar, BottomBar } from "./components/index";
+import Home from "./screens/home";
+import Favourites from "./screens/favourites";
+import { useFonts } from "expo-font";
+
+export type Trip = {
+    id: number;
+    image: any;
+    text: string;
+    fav: boolean;
+    price: string;
+    realDuration: string;
+    virtualDuration: string;
+};
+
+export type Trips = Trip[];
+
+const tripsData: Trips = [
+    {
+        id: 0,
+        image: require("./assets/images/locations/underCity.jpg"),
+        text: "Live the 40's in this amazing underwater city!",
+        fav: true,
+        price: "1BTC",
+        realDuration: "1min",
+        virtualDuration: "1week",
+    },
+    {
+        id: 1,
+        image: require("./assets/images/locations/desert.jpg"),
+        text: "Get hot (very hot) in the infinite desert",
+        fav: false,
+        price: "1BTC",
+        realDuration: "1min",
+        virtualDuration: "1week",
+    },
+    {
+        id: 2,
+        image: require("./assets/images/locations/postField.jpg"),
+        text: "Find a moment to relax in this old farm (before the next bomb drops)",
+        fav: true,
+        price: "1BTC",
+        realDuration: "1min",
+        virtualDuration: "1week",
+    },
+];
 
 export default function App() {
+    const [trips, setTrips] = useState(tripsData);
+    //const [loaded] = useFonts({"Lato-Regular": require(./assets/fonts/etc)})
+    const [screen, setScreen] = useState("fav");
+
     return (
         <>
             <TopBar />
             <Banner />
-            <ScrollView style={styles.ScrollViewContainer}>
-                <Feature />
-                <NextTrip />
-                <List />
-            </ScrollView>
+            {screen === "home" && <Home trips={trips} setTrips={setTrips} />}
+            {screen === "fav" && <Favourites trips={trips} />}
+            <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
         </>
     );
 }
-
-const styles = StyleSheet.create({
-    ScrollViewContainer: {
-        flex: 1,
-        backgroundColor: "#020f13",
-    },
-    container: {
-        flex: 1,
-        backgroundColor: "#020f13",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-    },
-});

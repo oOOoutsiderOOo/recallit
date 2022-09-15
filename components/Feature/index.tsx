@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from "react-native";
+import { colors } from "../../constants/colors";
 
 const Feature = () => {
     return (
@@ -19,15 +20,20 @@ const styles = StyleSheet.create({
     featureContainer: {
         paddingTop: 35,
         padding: 20,
-        backgroundColor: "#3a0ca3",
+        backgroundColor: colors.primary,
     },
 
     featureCard: {
-        backgroundColor: "#4cc9f0",
+        backgroundColor: colors.lightBlue,
         borderRadius: 10,
         borderWidth: 0,
         flex: 1,
         overflow: "hidden",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 9 },
+        shadowOpacity: 0.48,
+        shadowRadius: 11.95,
+        elevation: 18,
     },
 
     image: {
@@ -48,7 +54,7 @@ const styles = StyleSheet.create({
     },
 
     featureText: {
-        color: "white",
+        color: colors.white,
         fontWeight: "bold",
     },
 });

@@ -1,24 +1,37 @@
-import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { colors } from "../../constants/colors";
 
 const Banner = () => {
+    const [showBanner, setShowBanner] = useState(true);
     return (
-        <View style={styles.banner}>
-            <Text style={styles.text}>Book now and get 30% off you next VirtualMeal™!</Text>
-        </View>
+        <>
+            {showBanner && (
+                <View style={styles.banner}>
+                    <Text style={styles.text}>Book now and get 30% off you next VirtualMeal™!</Text>
+                    <TouchableOpacity style={styles.closeButton} onPress={() => setShowBanner(false)}>
+                        <Text>X</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+        </>
     );
 };
 
 const styles = StyleSheet.create({
     banner: {
-        backgroundColor: "#f72585",
+        backgroundColor: colors.accent,
         padding: 10,
         flexDirection: "row",
         justifyContent: "center",
     },
     text: {
         fontWeight: "600",
-        color: "#020f13",
+        color: colors.backgroundDark,
+    },
+
+    closeButton: {
+        marginLeft: "auto",
     },
 });
 

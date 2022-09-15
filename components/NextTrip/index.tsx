@@ -1,33 +1,24 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
+import { colors } from "../../constants/colors";
 
-const tripsData = [
-    {
-        image: require("../../assets/images/locations/underCity.jpg"),
-        text: "Live the 40's in this amazing underwater city!",
-        fav: false,
-    },
-    {
-        image: require("../../assets/images/locations/desert.jpg"),
-        text: "Get hot (very hot) in the infinite desert",
-        fav: false,
-    },
-    {
-        image: require("../../assets/images/locations/postField.jpg"),
-        text: "Find a moment to relax in this old farm (before the next bomb drops)",
-        fav: false,
-    },
-];
-
-export function Trip({ trip }) {
-    const [isFav, setIsFav] = useState(trip.fav);
+export function Trip({ trip, setTrips, trips }) {
+    const handleFav = () => {
+        const tempTrips = trips.map(item => {
+            if (item.id === trip.id) {
+                return { ...item, fav: !item.fav };
+            }
+            return item;
+        });
+        setTrips([...tempTrips]);
+    };
 
     return (
         <TouchableOpacity style={styles.tripCard}>
             <ImageBackground source={trip.image} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
-                    <TouchableOpacity style={styles.fav} onPress={() => setIsFav(!isFav)}>
-                        <Image source={isFav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />
+                    <TouchableOpacity style={styles.fav} onPress={() => handleFav()}>
+                        <Image source={trip.fav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />
                     </TouchableOpacity>
                 </View>
 
@@ -39,13 +30,16 @@ export function Trip({ trip }) {
     );
 }
 
-const NextTrip = () => {
+const NextTrip = ({ trips, setTrips }) => {
     return (
-        <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
-            {tripsData.map(trip => {
-                return <Trip trip={trip} />;
-            })}
-        </ScrollView>
+        <>
+            <Text style={styles.title}>Featured Expriences</Text>
+            <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
+                {trips.map(trip => {
+                    return <Trip key={trip.id} trip={trip} trips={trips} setTrips={setTrips} />;
+                })}
+            </ScrollView>
+        </>
     );
 };
 
@@ -53,14 +47,20 @@ const styles = StyleSheet.create({
     container: {
         /* paddingTop: 35, */
         padding: 20,
-        backgroundColor: "#020f13",
+        backgroundColor: colors.backgroundDark,
         flex: 1,
         flexDirection: "row",
         flexWrap: "nowrap",
     },
 
+    title: {
+        color: colors.white,
+        fontWeight: "bold",
+        marginLeft: 20,
+        marginTop: 20,
+    },
+
     tripCard: {
-        backgroundColor: "#4cc9f0",
         borderRadius: 10,
         borderWidth: 0,
         flex: 1,
@@ -69,6 +69,12 @@ const styles = StyleSheet.create({
         height: 200,
         marginRight: 20,
         marginEnd: 20,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 9 },
+        shadowOpacity: 0.48,
+        shadowRadius: 11.95,
+        elevation: 18,
+        backgroundColor: colors.lightBlue,
     },
 
     image: {
@@ -106,7 +112,8 @@ const styles = StyleSheet.create({
     },
 
     tripText: {
-        color: "white",
+        color: colors.white,
+        paddingHorizontal: 10,
     },
 });
 
