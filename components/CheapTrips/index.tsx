@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Trip, Trips } from "../../App";
 import { colors } from "../../constants/colors";
@@ -31,10 +31,10 @@ export function TripItem({ trip, setTrips, trips }: { trip: Trip; setTrips: Disp
     );
 }
 
-const NextTrip = ({ trips, setTrips }: { trips: Trips; setTrips: any }) => {
+const CheapTrips = ({ trips, setTrips }: { trips: Trips; setTrips: any }) => {
     return (
         <>
-            <Text style={styles.title}>Featured Experiences</Text>
+            <Text style={styles.title}>Short on money? Try our economic trips!</Text>
             <ScrollView
                 style={styles.container}
                 horizontal={true}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
 
     contentContainer: {
-        padding: 15,
+        padding: 10,
     },
 
     title: {
@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         flex: 1,
         overflow: "hidden",
-        width: 200,
-        height: 200,
-        marginRight: 20,
-        marginEnd: 20,
+        width: 150,
+        height: 150,
+        marginRight: 10,
+        marginEnd: 10,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 9 },
         shadowOpacity: 0.48,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     image: {
         justifyContent: "space-between",
         alignItems: "center",
-        height: 200,
+        height: 150,
         borderRadius: 20,
     },
 
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NextTrip;
+export default CheapTrips;

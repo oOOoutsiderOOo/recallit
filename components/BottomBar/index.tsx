@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         padding: 10,
         backgroundColor: colors.primary,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: -5,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 4.65,
+        elevation: 8,
     },
     button: {
         alignItems: "center",

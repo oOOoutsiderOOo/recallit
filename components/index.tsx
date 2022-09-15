@@ -4,3 +4,4 @@ export { default as NextTrip } from "./NextTrip/index";
 export { default as List } from "./List/index";
 export { default as TopBar } from "./TopBar/index";
 export { default as BottomBar } from "./BottomBar/index";
+export { default as CheapTrips } from "./CheapTrips/index";

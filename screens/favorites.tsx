@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import { Trips } from "../App";
 import { colors } from "../constants/colors";
 
-export default function Favorites({ trips }: { trips: Trips }) {
+export default function Favorites({ trips, cheapTrips }: { trips: Trips; cheapTrips: Trips }) {
+    const [allTrips, setAllTrips] = useState([...trips, ...cheapTrips]);
+
     return (
         <>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Favorites</Text>
             </View>
             <ScrollView style={styles.ScrollViewContainer}>
-                {trips
+                {allTrips
                     .filter(trip => trip.fav === true)
                     .map(trip => {
                         return (
@@ -29,7 +31,7 @@ export default function Favorites({ trips }: { trips: Trips }) {
                             </View>
                         );
                     })}
-                {!trips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
+                {!allTrips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
             </ScrollView>
         </>
     );
