@@ -61,16 +61,19 @@ const styles = StyleSheet.create({
 
     title: {
         color: colors.white,
+        fontFamily: "Poppins-Regular",
     },
 
     duration: {
         color: colors.gray,
         fontSize: 12,
+        fontFamily: "Poppins-Regular",
     },
 
     price: {
         color: colors.white,
         fontSize: 12,
+        fontFamily: "Poppins-Regular",
     },
 
     empty: {
@@ -78,5 +81,6 @@ const styles = StyleSheet.create({
         color: colors.white,
         textAlign: "center",
         fontSize: 20,
+        fontFamily: "Poppins-Regular",
     },
 });

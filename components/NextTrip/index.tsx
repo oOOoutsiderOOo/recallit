@@ -33,7 +33,7 @@ export function Trip({ trip, setTrips, trips }) {
 const NextTrip = ({ trips, setTrips }) => {
     return (
         <>
-            <Text style={styles.title}>Featured Expriences</Text>
+            <Text style={styles.title}>Featured Experiences</Text>
             <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
                 {trips.map(trip => {
                     return <Trip key={trip.id} trip={trip} trips={trips} setTrips={setTrips} />;
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 
     title: {
         color: colors.white,
-        fontWeight: "bold",
+        fontFamily: "Poppins-Bold",
         marginLeft: 20,
         marginTop: 20,
     },
@@ -112,8 +112,10 @@ const styles = StyleSheet.create({
     },
 
     tripText: {
+        fontSize: 12,
         color: colors.white,
         paddingHorizontal: 10,
+        fontFamily: "Poppins-Regular",
     },
 });
 

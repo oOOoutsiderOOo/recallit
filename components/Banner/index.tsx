@@ -26,12 +26,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     text: {
-        fontWeight: "600",
+        fontSize: 12,
+        fontFamily: "Poppins-Bold",
         color: colors.backgroundDark,
     },
 
     closeButton: {
         marginLeft: "auto",
+        fontFamily: "Poppins-Bold",
     },
 });
 

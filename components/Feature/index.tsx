@@ -18,7 +18,6 @@ const Feature = () => {
 
 const styles = StyleSheet.create({
     featureContainer: {
-        paddingTop: 35,
         padding: 20,
         backgroundColor: colors.primary,
     },
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
 
     featureText: {
         color: colors.white,
-        fontWeight: "bold",
+        fontFamily: "Poppins-Bold",
     },
 });
 

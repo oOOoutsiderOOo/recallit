@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Banner, TopBar, BottomBar } from "./components/index";
 import Home from "./screens/home";
 import Favourites from "./screens/favourites";
+import SwipeGesture from "./screens/swypeTest";
 import { useFonts } from "expo-font";
 
 export type Trip = {
@@ -49,8 +51,19 @@ const tripsData: Trips = [
 
 export default function App() {
     const [trips, setTrips] = useState(tripsData);
-    //const [loaded] = useFonts({"Lato-Regular": require(./assets/fonts/etc)})
     const [screen, setScreen] = useState("fav");
+    const [loaded] = useFonts({
+        "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
+        "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
+    });
+
+    if (!loaded) {
+        return (
+            <View>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
 
     return (
         <>
@@ -58,6 +71,7 @@ export default function App() {
             <Banner />
             {screen === "home" && <Home trips={trips} setTrips={setTrips} />}
             {screen === "fav" && <Favourites trips={trips} />}
+            {screen === "swipe" && <SwipeGesture />}
             <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
         </>
