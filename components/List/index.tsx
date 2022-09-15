@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, FlatList, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, TextInput, Button } from "react-native";
 
 const initialList = [
     {

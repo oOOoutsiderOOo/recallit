@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: "Poppins-Regular",
     },
+    navMenu: {},
+    userMenu: {},
 });
 
 export default TopBar;

@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, ScrollView, Text, View, ImageBackground, Image } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
+import { Trips } from "../App";
 import { colors } from "../constants/colors";
 
-export default function Favourites({ trips }) {
+export default function Favourites({ trips }: { trips: Trips }) {
     return (
         <ScrollView style={styles.ScrollViewContainer}>
             {trips

@@ -5,6 +5,7 @@ import { Banner, TopBar, BottomBar } from "./components/index";
 import Home from "./screens/home";
 import Favourites from "./screens/favourites";
 import { useFonts } from "expo-font";
+import featTripsData from "./backend/data/featTrips";
 
 export type Trip = {
     id: number;
@@ -18,38 +19,8 @@ export type Trip = {
 
 export type Trips = Trip[];
 
-const tripsData: Trips = [
-    {
-        id: 0,
-        image: require("./assets/images/locations/underCity.jpg"),
-        text: "Live the 40's in this amazing underwater city!",
-        fav: true,
-        price: "1BTC",
-        realDuration: "1min",
-        virtualDuration: "1week",
-    },
-    {
-        id: 1,
-        image: require("./assets/images/locations/desert.jpg"),
-        text: "Get hot (very hot) in the infinite desert",
-        fav: false,
-        price: "1BTC",
-        realDuration: "1min",
-        virtualDuration: "1week",
-    },
-    {
-        id: 2,
-        image: require("./assets/images/locations/postField.jpg"),
-        text: "Find a moment to relax in this old farm (before the next bomb drops)",
-        fav: true,
-        price: "1BTC",
-        realDuration: "1min",
-        virtualDuration: "1week",
-    },
-];
-
 export default function App() {
-    const [trips, setTrips] = useState(tripsData);
+    const [trips, setTrips] = useState(featTripsData);
     const [screen, setScreen] = useState("home");
     const [loaded] = useFonts({
         "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),

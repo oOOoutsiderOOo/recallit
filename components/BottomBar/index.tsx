@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { colors } from "../../constants/colors";
 
-const bottomBar = ({ setScreen }) => {
+const bottomBar = ({ setScreen }: { setScreen: Dispatch<SetStateAction<string>> }) => {
     return (
         <View style={styles.bottomBar}>
             <TouchableOpacity style={styles.button} onPress={() => setScreen("home")}>

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
+import { Trip, Trips } from "../../App";
 import { colors } from "../../constants/colors";
 
-export function Trip({ trip, setTrips, trips }) {
+export function TripItem({ trip, setTrips, trips }: { trip: Trip; setTrips: Dispatch<SetStateAction<Trips>>; trips: Trips }) {
     const handleFav = () => {
         const tempTrips = trips.map(item => {
             if (item.id === trip.id) {
@@ -30,13 +31,13 @@ export function Trip({ trip, setTrips, trips }) {
     );
 }
 
-const NextTrip = ({ trips, setTrips }) => {
+const NextTrip = ({ trips, setTrips }: { trips: Trips; setTrips: any }) => {
     return (
         <>
             <Text style={styles.title}>Featured Experiences</Text>
             <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
                 {trips.map(trip => {
-                    return <Trip key={trip.id} trip={trip} trips={trips} setTrips={setTrips} />;
+                    return <TripItem key={trip.id} trip={trip} trips={trips} setTrips={setTrips} />;
                 })}
             </ScrollView>
         </>
