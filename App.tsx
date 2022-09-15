@@ -3,9 +3,9 @@ import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Banner, TopBar, BottomBar } from "./components/index";
 import Home from "./screens/home";
-import Favourites from "./screens/favourites";
 import { useFonts } from "expo-font";
 import featTripsData from "./backend/data/featTrips";
+import Favorites from "./screens/favorites";
 
 export type Trip = {
     id: number;
@@ -40,7 +40,7 @@ export default function App() {
             <TopBar />
             <Banner />
             {screen === "home" && <Home trips={trips} setTrips={setTrips} />}
-            {screen === "fav" && <Favourites trips={trips} />}
+            {screen === "fav" && <Favorites trips={trips} />}
             <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
         </>
