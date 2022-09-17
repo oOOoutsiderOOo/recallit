@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import featTripsData from "./backend/data/featTrips";
 import Favorites from "./screens/favorites";
 import cheapTripsData from "./backend/data/cheapTrips";
+import DetailedView from "./screens/detailedView";
 
 export type Trip = {
     id: number;
@@ -43,6 +44,7 @@ export default function App() {
             <Banner />
             {screen === "home" && <Home trips={trips} setTrips={setTrips} cheapTrips={cheapTrips} setCheapTrips={setCheapTrips} />}
             {screen === "fav" && <Favorites trips={trips} cheapTrips={cheapTrips} />}
+            {screen === "detail" && <DetailedView />}
             <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
         </>

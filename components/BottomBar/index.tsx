@@ -17,7 +17,7 @@ const bottomBar = ({ setScreen }: { setScreen: Dispatch<SetStateAction<string>> 
                 <Image style={styles.buttonImage} source={require("../../assets/icons/favW.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => setScreen("swipe")}>
+            <TouchableOpacity style={styles.button} onPress={() => setScreen("detail")}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/user.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Account</Text>
             </TouchableOpacity>
