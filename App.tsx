@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Banner, TopBar, BottomBar } from "./components/index";
-import Home from "./screens/home";
 import { useFonts } from "expo-font";
-import featTripsData from "./backend/data/featTrips";
+import tripsData from "./backend/data/tripsData";
+import Home from "./screens/home";
 import Favorites from "./screens/favorites";
-import cheapTripsData from "./backend/data/cheapTrips";
 import DetailedView from "./screens/detailedView";
 
 export type Trip = {
@@ -17,14 +16,15 @@ export type Trip = {
     price: string;
     realDuration: string;
     virtualDuration: string;
+    type: string;
 };
 
 export type Trips = Trip[];
 
 export default function App() {
-    const [trips, setTrips] = useState(featTripsData);
-    const [cheapTrips, setCheapTrips] = useState(cheapTripsData);
+    const [trips, setTrips] = useState(tripsData);
     const [screen, setScreen] = useState("home");
+    const [selectedTrip, setSelectedTrip] = useState<Trip | {}>({});
     const [loaded] = useFonts({
         "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
         "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
@@ -42,9 +42,9 @@ export default function App() {
         <>
             <TopBar />
             <Banner />
-            {screen === "home" && <Home trips={trips} setTrips={setTrips} cheapTrips={cheapTrips} setCheapTrips={setCheapTrips} />}
-            {screen === "fav" && <Favorites trips={trips} cheapTrips={cheapTrips} />}
-            {screen === "detail" && <DetailedView />}
+            {screen === "home" && <Home trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />}
+            {screen === "fav" && <Favorites trips={trips} />}
+            {screen === "detail" && <DetailedView selectedTrip={selectedTrip} setTrips={setTrips} trips={trips} />}
             <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
         </>

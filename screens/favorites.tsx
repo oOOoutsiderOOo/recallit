@@ -3,8 +3,8 @@ import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import { Trips } from "../App";
 import { colors } from "../constants/colors";
 
-export default function Favorites({ trips, cheapTrips }: { trips: Trips; cheapTrips: Trips }) {
-    const [allTrips, setAllTrips] = useState([...trips, ...cheapTrips]);
+export default function Favorites({ trips }: { trips: Trips }) {
+    const [allTrips, setAllTrips] = useState(trips);
 
     return (
         <>

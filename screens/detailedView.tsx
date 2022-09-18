@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView, Share } from "react-native";
 import { colors } from "../constants/colors";
-import featTripsData from "../backend/data/featTrips";
-import { icons } from "../constants/icons";
+import { icons } from "../constants/iconsScreen";
+import { Trip, Trips } from "../App";
 
-const DetailedView = () => {
-    const [trips, setTrips] = useState(featTripsData[0]);
+export default function DetailedView({ selectedTrip, setTrips, trips }) {
+    const [trip, setTrip] = useState(selectedTrip);
 
     const onShare = async () => {
         try {
             const result = await Share.share({
-                message: trips.text,
+                message: trip.text,
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -26,23 +26,34 @@ const DetailedView = () => {
         }
     };
 
+    const handleFav = () => {
+        const tempTrips = trips.map((item: Trip) => {
+            if (item.id === trip.id) {
+                return { ...item, fav: !item.fav };
+            }
+            return item;
+        });
+        setTrips([...tempTrips]);
+        setTrip({ ...trip, fav: !trip.fav });
+    };
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={trips.image} style={styles.image} resizeMode={"cover"} />
+                <Image source={trip.image} style={styles.image} resizeMode={"cover"} />
             </View>
             <View>
-                <Text style={styles.title}>{trips.text}</Text>
+                <Text style={styles.title}>{trip.text}</Text>
                 <View style={styles.durationContainer}>
-                    <Text style={styles.duration}>In flesh duration: {trips.realDuration}</Text>
-                    <Text style={styles.duration}>Perceived duration: {trips.virtualDuration}</Text>
+                    <Text style={styles.duration}>In flesh duration: {trip.realDuration}</Text>
+                    <Text style={styles.duration}>Perceived duration: {trip.virtualDuration}</Text>
                 </View>
                 <View style={styles.bookContainer}>
                     <View style={styles.actionsContainer}>
                         <View style={styles.action}>
-                            <Text style={styles.actionText}>Add to favorites</Text>
-                            <TouchableOpacity>
-                                <Image style={styles.icon} source={icons.favFilled} />
+                            <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
+                            <TouchableOpacity onPress={handleFav}>
+                                <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.fav} />
                             </TouchableOpacity>
                         </View>
                         <View style={styles.action}>
@@ -65,7 +76,7 @@ const DetailedView = () => {
             </View>
         </ScrollView>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -156,5 +167,3 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 });
-
-export default DetailedView;

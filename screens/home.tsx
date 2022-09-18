@@ -3,14 +3,14 @@ import { StyleSheet, ScrollView } from "react-native";
 import { Feature, NextTrip, CheapTrips } from "../components/index";
 import { colors } from "../constants/colors";
 
-export default function Home({ trips, setTrips, cheapTrips, setCheapTrips }) {
+export default function Home({ trips, setTrips, setScreen, setSelectedTrip }) {
     return (
         <>
             <ScrollView style={styles.ScrollViewContainer}>
                 <Feature />
-                <NextTrip trips={trips} setTrips={setTrips} />
+                <NextTrip trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />
                 {/* <List /> */}
-                <CheapTrips trips={cheapTrips} setTrips={setCheapTrips} />
+                <CheapTrips trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />
             </ScrollView>
         </>
     );

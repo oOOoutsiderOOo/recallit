@@ -3,7 +3,19 @@ import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, Scrol
 import { Trip, Trips } from "../../App";
 import { colors } from "../../constants/colors";
 
-export function TripItem({ trip, setTrips, trips }: { trip: Trip; setTrips: Dispatch<SetStateAction<Trips>>; trips: Trips }) {
+export function TripItem({
+    trip,
+    setTrips,
+    trips,
+    setScreen,
+    setSelectedTrip,
+}: {
+    trip: Trip;
+    setTrips: Dispatch<SetStateAction<Trips>>;
+    trips: Trips;
+    setScreen: Dispatch<SetStateAction<string>>;
+    setSelectedTrip: Dispatch<SetStateAction<Trip>>;
+}) {
     const handleFav = () => {
         const tempTrips = trips.map(item => {
             if (item.id === trip.id) {
@@ -14,8 +26,13 @@ export function TripItem({ trip, setTrips, trips }: { trip: Trip; setTrips: Disp
         setTrips([...tempTrips]);
     };
 
+    const handleSelectItem = (selectedTrip: Trip) => {
+        setSelectedTrip(selectedTrip);
+        setScreen("detail");
+    };
+
     return (
-        <TouchableOpacity style={styles.tripCard}>
+        <TouchableOpacity style={styles.tripCard} onPress={() => handleSelectItem(trip)}>
             <ImageBackground source={trip.image} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
                     <TouchableOpacity style={styles.fav} onPress={() => handleFav()}>
@@ -31,7 +48,17 @@ export function TripItem({ trip, setTrips, trips }: { trip: Trip; setTrips: Disp
     );
 }
 
-const CheapTrips = ({ trips, setTrips }: { trips: Trips; setTrips: any }) => {
+const CheapTrips = ({
+    trips,
+    setTrips,
+    setScreen,
+    setSelectedTrip,
+}: {
+    trips: Trips;
+    setTrips: any;
+    setScreen: Dispatch<SetStateAction<string>>;
+    setSelectedTrip: Dispatch<SetStateAction<Trip>>;
+}) => {
     return (
         <>
             <Text style={styles.title}>Short on money? Try our economic trips!</Text>
@@ -40,9 +67,20 @@ const CheapTrips = ({ trips, setTrips }: { trips: Trips; setTrips: any }) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainer}>
-                {trips.map(trip => {
-                    return <TripItem key={trip.id} trip={trip} trips={trips} setTrips={setTrips} />;
-                })}
+                {trips
+                    .filter(trip => trip.type === "cheap")
+                    .map(trip => {
+                        return (
+                            <TripItem
+                                key={trip.id}
+                                trip={trip}
+                                trips={trips}
+                                setTrips={setTrips}
+                                setScreen={setScreen}
+                                setSelectedTrip={setSelectedTrip}
+                            />
+                        );
+                    })}
             </ScrollView>
         </>
     );
