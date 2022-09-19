@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
 import { Trips } from "../App";
 import { colors } from "../constants/colors";
 
-export default function Favorites({ trips }: { trips: Trips }) {
+export default function Favorites({ trips, setScreen, setSelectedTrip }: { trips: Trips; setScreen: any; setSelectedTrip: any }) {
     const [allTrips, setAllTrips] = useState(trips);
+
+    const handleSelectItem = (selectedTrip: Trip) => {
+        setSelectedTrip(selectedTrip);
+        setScreen("detail");
+    };
 
     return (
         <>
@@ -16,7 +21,7 @@ export default function Favorites({ trips }: { trips: Trips }) {
                     .filter(trip => trip.fav === true)
                     .map(trip => {
                         return (
-                            <View style={styles.card} key={trip.id}>
+                            <TouchableOpacity style={styles.card} key={trip.id} onPress={() => handleSelectItem(trip)}>
                                 <Image source={trip.image} resizeMode="cover" style={styles.image}></Image>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.title}>{trip.text}</Text>
@@ -28,7 +33,7 @@ export default function Favorites({ trips }: { trips: Trips }) {
                                         <Text style={styles.price}>Price {trip.price}</Text>
                                     </View>
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         );
                     })}
                 {!allTrips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}

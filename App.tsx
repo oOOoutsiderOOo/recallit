@@ -3,6 +3,7 @@ import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Banner, TopBar, BottomBar } from "./components/index";
 import { useFonts } from "expo-font";
+import { NavigationContainer } from "@react-navigation/native";
 import tripsData from "./backend/data/tripsData";
 import Home from "./screens/home";
 import Favorites from "./screens/favorites";
@@ -43,7 +44,7 @@ export default function App() {
             <TopBar />
             <Banner />
             {screen === "home" && <Home trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />}
-            {screen === "fav" && <Favorites trips={trips} />}
+            {screen === "fav" && <Favorites trips={trips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />}
             {screen === "detail" && <DetailedView selectedTrip={selectedTrip} setTrips={setTrips} trips={trips} />}
             <BottomBar setScreen={setScreen} />
             <StatusBar style="light" />
