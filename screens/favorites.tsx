@@ -12,7 +12,7 @@ export default function Favorites({ navigation }) {
 
     const handleSelectItem = (selectedTrip: Trip) => {
         setSelectedTrip(selectedTrip);
-        navigation.navigate("DetailedView");
+        navigation.push("DetailedView");
     };
 
     return (

@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView, Share } from "react-native";
 import { colors } from "../constants/colors";
 import { icons } from "../constants/iconsScreen";
-import { Trip, Trips, TripsContext } from "../App";
+import { TripsContext } from "../App";
 import { BottomBar } from "../components";
+import { Trip } from "../types/trips";
 
 export default function DetailedView({ navigation }) {
     const { selectedTrip, setTrips, trips } = useContext(TripsContext);
