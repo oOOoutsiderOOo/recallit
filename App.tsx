@@ -1,30 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, createContext } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Banner, TopBar, BottomBar } from "./components/index";
 import { useFonts } from "expo-font";
-import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import tripsData from "./backend/data/tripsData";
-import Home from "./screens/home";
-import Favorites from "./screens/favorites";
-import DetailedView from "./screens/detailedView";
+import AppNavigator from "./navigation";
+import { Trip } from "./types/trips";
 
-export type Trip = {
-    id: number;
-    image: any;
-    text: string;
-    fav: boolean;
-    price: string;
-    realDuration: string;
-    virtualDuration: string;
-    type: string;
-};
-
-export type Trips = Trip[];
+const Stack = createNativeStackNavigator();
+export const TripsContext: any = createContext(null);
 
 export default function App() {
     const [trips, setTrips] = useState(tripsData);
-    const [screen, setScreen] = useState("home");
     const [selectedTrip, setSelectedTrip] = useState<Trip | {}>({});
     const [loaded] = useFonts({
         "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
@@ -41,13 +28,10 @@ export default function App() {
 
     return (
         <>
-            <TopBar />
-            <Banner />
-            {screen === "home" && <Home trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />}
-            {screen === "fav" && <Favorites trips={trips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />}
-            {screen === "detail" && <DetailedView selectedTrip={selectedTrip} setTrips={setTrips} trips={trips} />}
-            <BottomBar setScreen={setScreen} />
-            <StatusBar style="light" />
+            <TripsContext.Provider value={{ trips, setTrips, setSelectedTrip, selectedTrip }}>
+                <AppNavigator />
+                <StatusBar style="light" />
+            </TripsContext.Provider>
         </>
     );
 }

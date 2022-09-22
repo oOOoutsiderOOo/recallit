@@ -1,21 +1,11 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
-import { Trip, Trips } from "../../App";
+import { Trip, Trips, TripsContext } from "../../App";
 import { colors } from "../../constants/colors";
 
-export function TripItem({
-    trip,
-    setTrips,
-    trips,
-    setScreen,
-    setSelectedTrip,
-}: {
-    trip: Trip;
-    setTrips: Dispatch<SetStateAction<Trips>>;
-    trips: Trips;
-    setScreen: any;
-    setSelectedTrip: Dispatch<SetStateAction<Trip>>;
-}) {
+export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
+    const { trips, setTrips, setSelectedTrip } = useContext(TripsContext);
+
     const handleFav = () => {
         const tempTrips = trips.map(item => {
             if (item.id === trip.id) {
@@ -28,7 +18,7 @@ export function TripItem({
 
     const handleSelectItem = (selectedTrip: Trip) => {
         setSelectedTrip(selectedTrip);
-        setScreen("detail");
+        navigation.navigate("DetailedView");
     };
 
     return (
@@ -48,7 +38,8 @@ export function TripItem({
     );
 }
 
-const NextTrip = ({ trips, setTrips, setScreen, setSelectedTrip }: { trips: Trips; setTrips: any; setScreen: any; setSelectedTrip: any }) => {
+const NextTrip = ({ navigation }) => {
+    const { trips }: { trips: Trips } = useContext(TripsContext);
     return (
         <>
             <Text style={styles.title}>Featured Experiences</Text>
@@ -60,16 +51,7 @@ const NextTrip = ({ trips, setTrips, setScreen, setSelectedTrip }: { trips: Trip
                 {trips
                     .filter(trip => trip.type === "featured")
                     .map(trip => {
-                        return (
-                            <TripItem
-                                key={trip.id}
-                                trip={trip}
-                                trips={trips}
-                                setTrips={setTrips}
-                                setScreen={setScreen}
-                                setSelectedTrip={setSelectedTrip}
-                            />
-                        );
+                        return <TripItem key={trip.id} trip={trip} navigation={navigation} />;
                     })}
             </ScrollView>
         </>

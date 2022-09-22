@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
-import { Trips } from "../App";
+import { TripsContext } from "../App";
+import { BottomBar } from "../components";
 import { colors } from "../constants/colors";
+import { Trip } from "../types/trips";
 
-export default function Favorites({ trips, setScreen, setSelectedTrip }: { trips: Trips; setScreen: any; setSelectedTrip: any }) {
+export default function Favorites({ navigation }) {
+    const { trips, setSelectedTrip } = useContext(TripsContext);
+
     const [allTrips, setAllTrips] = useState(trips);
 
     const handleSelectItem = (selectedTrip: Trip) => {
         setSelectedTrip(selectedTrip);
-        setScreen("detail");
+        navigation.navigate("DetailedView");
     };
 
     return (
@@ -38,6 +42,7 @@ export default function Favorites({ trips, setScreen, setSelectedTrip }: { trips
                     })}
                 {!allTrips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
             </ScrollView>
+            <BottomBar navigation={navigation} />
         </>
     );
 }

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView, Share } from "react-native";
 import { colors } from "../constants/colors";
 import { icons } from "../constants/iconsScreen";
-import { Trip, Trips } from "../App";
+import { Trip, Trips, TripsContext } from "../App";
+import { BottomBar } from "../components";
 
-export default function DetailedView({ selectedTrip, setTrips, trips }) {
+export default function DetailedView({ navigation }) {
+    const { selectedTrip, setTrips, trips } = useContext(TripsContext);
     const [trip, setTrip] = useState(selectedTrip);
 
     const onShare = async () => {
@@ -38,43 +40,46 @@ export default function DetailedView({ selectedTrip, setTrips, trips }) {
     };
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.imageContainer}>
-                <Image source={trip.image} style={styles.image} resizeMode={"cover"} />
-            </View>
-            <View>
-                <Text style={styles.title}>{trip.text}</Text>
-                <View style={styles.durationContainer}>
-                    <Text style={styles.duration}>In flesh duration: {trip.realDuration}</Text>
-                    <Text style={styles.duration}>Perceived duration: {trip.virtualDuration}</Text>
+        <>
+            <ScrollView style={styles.container}>
+                <View style={styles.imageContainer}>
+                    <Image source={trip.image} style={styles.image} resizeMode={"cover"} />
                 </View>
-                <View style={styles.bookContainer}>
-                    <View style={styles.actionsContainer}>
-                        <View style={styles.action}>
-                            <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
-                            <TouchableOpacity onPress={handleFav}>
-                                <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.fav} />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.action}>
-                            <Text style={styles.actionText}>Share</Text>
-                            <TouchableOpacity onPress={onShare}>
-                                <Image style={styles.icon} source={icons.share} />
-                            </TouchableOpacity>
-                        </View>
+                <View>
+                    <Text style={styles.title}>{trip.text}</Text>
+                    <View style={styles.durationContainer}>
+                        <Text style={styles.duration}>In flesh duration: {trip.realDuration}</Text>
+                        <Text style={styles.duration}>Perceived duration: {trip.virtualDuration}</Text>
                     </View>
-                    <TouchableOpacity style={styles.bookButton}>
-                        <Text>Book Now</Text>
-                    </TouchableOpacity>
+                    <View style={styles.bookContainer}>
+                        <View style={styles.actionsContainer}>
+                            <View style={styles.action}>
+                                <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
+                                <TouchableOpacity onPress={handleFav}>
+                                    <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.fav} />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.action}>
+                                <Text style={styles.actionText}>Share</Text>
+                                <TouchableOpacity onPress={onShare}>
+                                    <Image style={styles.icon} source={icons.share} />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        <TouchableOpacity style={styles.bookButton}>
+                            <Text>Book Now</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.descriptionContainer}>
+                        <Text style={styles.description}>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis ad hic voluptates laudantium voluptatem porro
+                            architecto, libero sint quod aspernatur culpa rerum, earum amet magni dolores similique assumenda. Reiciendis, eius!
+                        </Text>
+                    </View>
                 </View>
-                <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis ad hic voluptates laudantium voluptatem porro architecto,
-                        libero sint quod aspernatur culpa rerum, earum amet magni dolores similique assumenda. Reiciendis, eius!
-                    </Text>
-                </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+            <BottomBar navigation={navigation} />
+        </>
     );
 }
 

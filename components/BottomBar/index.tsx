@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { colors } from "../../constants/colors";
 
-const bottomBar = ({ setScreen }: { setScreen: Dispatch<SetStateAction<string>> }) => {
+const bottomBar = ({ navigation }) => {
     return (
         <View style={styles.bottomBar}>
-            <TouchableOpacity style={styles.button} onPress={() => setScreen("home")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/home.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Explore</Text>
             </TouchableOpacity>
@@ -13,7 +13,7 @@ const bottomBar = ({ setScreen }: { setScreen: Dispatch<SetStateAction<string>> 
                 <Image style={styles.buttonImage} source={require("../../assets/icons/search.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Search</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => setScreen("fav")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Fav")}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/favW.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>

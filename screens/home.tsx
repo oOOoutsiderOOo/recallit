@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { Feature, NextTrip, CheapTrips } from "../components/index";
+import { TripsContext } from "../App";
+import { Feature, NextTrip, CheapTrips, BottomBar } from "../components/index";
 import { colors } from "../constants/colors";
 
-export default function Home({ trips, setTrips, setScreen, setSelectedTrip }) {
+export default function Home({ navigation }) {
     return (
         <>
             <ScrollView style={styles.ScrollViewContainer}>
                 <Feature />
-                <NextTrip trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />
-                {/* <List /> */}
-                <CheapTrips trips={trips} setTrips={setTrips} setScreen={setScreen} setSelectedTrip={setSelectedTrip} />
+                <NextTrip navigation={navigation} />
+                <CheapTrips navigation={navigation} />
             </ScrollView>
+            <BottomBar navigation={navigation} />
         </>
     );
 }
