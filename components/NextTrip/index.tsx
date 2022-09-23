@@ -1,7 +1,8 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
-import { Trip, Trips, TripsContext } from "../../App";
 import { colors } from "../../constants/colors";
+import { TripsContext } from "../../contexts/TripsContext";
+import { Trip, Trips } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
     const { trips, setTrips, setSelectedTrip } = useContext(TripsContext);

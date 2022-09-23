@@ -1,10 +1,8 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../screens/home";
 import Favorites from "../screens/favorites";
 import DetailedView from "../screens/detailedView";
-import { BottomBar } from "../components";
 
 const Stack = createNativeStackNavigator();
 

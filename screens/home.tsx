@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { TripsContext } from "../App";
 import { Feature, NextTrip, CheapTrips, BottomBar } from "../components/index";
 import { colors } from "../constants/colors";
 

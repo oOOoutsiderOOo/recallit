@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView, Share } from "react-native";
+import React, { useContext, useState } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Share } from "react-native";
 import { colors } from "../constants/colors";
 import { icons } from "../constants/iconsScreen";
-import { TripsContext } from "../App";
 import { BottomBar } from "../components";
 import { Trip } from "../types/trips";
+import { TripsContext } from "../contexts/TripsContext";
 
 export default function DetailedView({ navigation }) {
     const { selectedTrip, setTrips, trips } = useContext(TripsContext);
@@ -57,7 +57,7 @@ export default function DetailedView({ navigation }) {
                             <View style={styles.action}>
                                 <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
                                 <TouchableOpacity onPress={handleFav}>
-                                    <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.fav} />
+                                    <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.favWhite} />
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.action}>

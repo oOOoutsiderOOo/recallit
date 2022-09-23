@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useContext } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
-import { TripsContext } from "../../App";
 import { colors } from "../../constants/colors";
+import { TripsContext } from "../../contexts/TripsContext";
 import { Trip } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {

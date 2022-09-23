@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
@@ -6,9 +6,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import tripsData from "./backend/data/tripsData";
 import AppNavigator from "./navigation";
 import { Trip } from "./types/trips";
+import { TripsContext } from "./contexts/TripsContext";
 
 const Stack = createNativeStackNavigator();
-export const TripsContext: any = createContext(null);
 
 export default function App() {
     const [trips, setTrips] = useState(tripsData);

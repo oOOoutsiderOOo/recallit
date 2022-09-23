@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import ShopNavigator from "./shop";
-import { TopBar, Banner, BottomBar } from "../components";
+import { TopBar, Banner } from "../components";
 
 const AppNavigator = () => {
     return (
