@@ -17,9 +17,13 @@ export default function Search({ navigation }) {
     };
 
     const handleSearch = (text: string) => {
+        setEmptyResult(false);
+        text === "" && setSearchResult([]);
         if (text !== "") {
             let array = trips.filter((trip: Trip) => trip.text.includes(text));
-            array[0] ? setSearchResult(array) : setEmptyResult(true);
+            setSearchResult(array);
+            !array[0] && setEmptyResult(true);
+            console.warn(emptyResult);
         }
     };
 

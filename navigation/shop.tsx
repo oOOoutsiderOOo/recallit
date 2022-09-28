@@ -11,10 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const HomeStack = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="DetailedView" component={DetailedView} />
         </Stack.Navigator>
@@ -23,10 +20,7 @@ const HomeStack = () => {
 
 const FavsStack = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Fav" component={Favorites} />
             <Stack.Screen name="DetailedView" component={DetailedView} />
         </Stack.Navigator>
@@ -35,10 +29,7 @@ const FavsStack = () => {
 
 const SearchStack = () => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerShown: false,
-            }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="DetailedView" component={DetailedView} />
         </Stack.Navigator>
