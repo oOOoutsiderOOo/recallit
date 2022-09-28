@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { colors } from "../../constants/colors";
 
@@ -9,7 +9,7 @@ const bottomBar = ({ navigation }) => {
                 <Image style={styles.buttonImage} source={require("../../assets/icons/home.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Explore</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/search.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Search</Text>
             </TouchableOpacity>
