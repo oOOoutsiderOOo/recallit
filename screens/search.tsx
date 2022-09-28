@@ -9,6 +9,7 @@ export default function Search({ navigation }) {
     const { trips, setSelectedTrip } = useContext(TripsContext);
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
+    const [emptyResult, setEmptyResult] = useState(false);
 
     const handleSelectItem = (selectedTrip: Trip) => {
         setSelectedTrip(selectedTrip);
@@ -16,8 +17,10 @@ export default function Search({ navigation }) {
     };
 
     const handleSearch = (text: string) => {
-        let array = trips.filter((trip: Trip) => trip.text.includes(text));
-        setSearchResult(array);
+        if (text !== "") {
+            let array = trips.filter((trip: Trip) => trip.text.includes(text));
+            array[0] ? setSearchResult(array) : setEmptyResult(true);
+        }
     };
 
     return (
@@ -33,23 +36,25 @@ export default function Search({ navigation }) {
                     defaultValue={searchText}
                     onSubmitEditing={() => handleSearch(searchText)}
                 />
-                {searchResult.map(trip => {
-                    return (
-                        <TouchableOpacity style={styles.card} key={trip.id} onPress={() => handleSelectItem(trip)}>
-                            <Image source={trip.image} resizeMode="cover" style={styles.image}></Image>
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>{trip.text}</Text>
-                                <View style={styles.secondRowContainer}>
-                                    <View style={styles.durationContainer}>
-                                        <Text style={styles.duration}>In flesh duration: {trip.realDuration}</Text>
-                                        <Text style={styles.duration}>Perceived duration: {trip.virtualDuration}</Text>
+                {searchResult &&
+                    searchResult.map((trip: Trip) => {
+                        return (
+                            <TouchableOpacity style={styles.card} key={trip.id} onPress={() => handleSelectItem(trip)}>
+                                <Image source={trip.image} resizeMode="cover" style={styles.image}></Image>
+                                <View style={styles.textContainer}>
+                                    <Text style={styles.title}>{trip.text}</Text>
+                                    <View style={styles.secondRowContainer}>
+                                        <View style={styles.durationContainer}>
+                                            <Text style={styles.duration}>In flesh duration: {trip.realDuration}</Text>
+                                            <Text style={styles.duration}>Perceived duration: {trip.virtualDuration}</Text>
+                                        </View>
+                                        <Text style={styles.price}>Price {trip.price}</Text>
                                     </View>
-                                    <Text style={styles.price}>Price {trip.price}</Text>
                                 </View>
-                            </View>
-                        </TouchableOpacity>
-                    );
-                })}
+                            </TouchableOpacity>
+                        );
+                    })}
+                {emptyResult && <Text style={styles.empty}>Nothing Found :(</Text>}
             </ScrollView>
             <BottomBar navigation={navigation} />
         </>

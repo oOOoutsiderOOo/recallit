@@ -5,15 +5,15 @@ import { colors } from "../../constants/colors";
 const bottomBar = ({ navigation }) => {
     return (
         <View style={styles.bottomBar}>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Home")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HomeTab", { screen: "Home" })}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/home.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Explore</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SearchTab", { screen: "Search" })}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/search.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Search</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Fav")}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("FavTab", { screen: "Fav" })}>
                 <Image style={styles.buttonImage} source={require("../../assets/icons/favW.png")} resizeMode="contain" />
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>
