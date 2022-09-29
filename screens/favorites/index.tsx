@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
-import { TripsContext } from "../contexts/TripsContext";
-import { BottomBar } from "../components";
-import { colors } from "../constants/colors";
-import { Trip } from "../types/trips";
+import { TripsContext } from "../../contexts/TripsContext";
+import { BottomBar } from "../../components/index";
+import { colors } from "../../constants/colors";
+import { Trip } from "../../types/trips";
 
 export default function Favorites({ navigation }) {
     const { trips, setSelectedTrip } = useContext(TripsContext);

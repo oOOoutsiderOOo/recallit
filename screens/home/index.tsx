@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
-import { Feature, NextTrip, CheapTrips, BottomBar } from "../components/index";
-import { colors } from "../constants/colors";
+import { Feature, NextTrip, CheapTrips, BottomBar } from "../../components/index";
+import { colors } from "../../constants/colors";
 
 export default function Home({ navigation }) {
     return (

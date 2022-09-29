@@ -51,8 +51,8 @@ const CheapTrips = ({ navigation }) => {
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.contentContainer}>
                 {trips
-                    .filter(trip => trip.type === "cheap")
-                    .map(trip => {
+                    .filter((trip: Trip) => trip.type === "cheap")
+                    .map((trip: Trip) => {
                         return <TripItem key={trip.id} trip={trip} navigation={navigation} />;
                     })}
             </ScrollView>

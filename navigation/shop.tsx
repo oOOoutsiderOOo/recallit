@@ -1,10 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/home";
-import Favorites from "../screens/favorites";
-import DetailedView from "../screens/detailedView";
-import Search from "../screens/search";
+
+import { DetailedView, Home, Favorites, Search } from "../screens/index";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

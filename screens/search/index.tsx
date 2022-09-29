@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
-import { TripsContext } from "../contexts/TripsContext";
-import { BottomBar } from "../components";
-import { colors } from "../constants/colors";
-import { Trip } from "../types/trips";
+import { TripsContext } from "../../contexts/TripsContext";
+import { BottomBar } from "../../components/index";
+import { colors } from "../../constants/colors";
+import { Trip } from "../../types/trips";
 
 export default function Search({ navigation }) {
     const { trips, setSelectedTrip } = useContext(TripsContext);
@@ -23,7 +23,6 @@ export default function Search({ navigation }) {
             let array = trips.filter((trip: Trip) => trip.text.includes(text));
             setSearchResult(array);
             !array[0] && setEmptyResult(true);
-            console.warn(emptyResult);
         }
     };
 

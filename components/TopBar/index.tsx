@@ -1,13 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { colors } from "../../constants/colors";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const TopBar = () => {
     return (
         <View style={styles.topBar}>
             <View style={styles.logo}>
                 <Text style={styles.logoText}>reKall/it</Text>
-                <Image source={require("../../assets/icons/shopping-cart.png")} />
+                <Ionicons name="cart-outline" size={28} color={colors.white} />
+                {/* <Image source={require("../../assets/icons/shopping-cart.png")} /> */}
             </View>
             <View style={styles.navMenu}></View>
             <View style={styles.userMenu}></View>
