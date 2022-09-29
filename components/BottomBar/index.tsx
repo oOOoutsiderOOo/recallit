@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { colors } from "../../constants/colors";
 
-const bottomBar = ({ navigation, selectedTab }) => {
+const bottomBar = ({ navigation, selectedTab }: { navigation: any; selectedTab: string }) => {
     const [focused, seFocused] = useState(selectedTab);
 
     return (
@@ -14,17 +14,14 @@ const bottomBar = ({ navigation, selectedTab }) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SearchTab", { screen: "Search" })}>
                 <Ionicons name={focused === "search" ? "search" : "search-outline"} size={20} color={colors.white} />
-
                 <Text style={styles.logoText}>Search</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("FavTab", { screen: "Fav" })}>
                 <Ionicons name={focused === "fav" ? "heart" : "heart-outline"} size={20} color={colors.white} />
-
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
                 <Ionicons name={focused === "user" ? "person" : "person-outline"} size={20} color={colors.white} />
-
                 <Text style={styles.logoText}>Account</Text>
             </TouchableOpacity>
         </View>

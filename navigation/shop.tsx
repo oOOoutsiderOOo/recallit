@@ -2,7 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { DetailedView, Home, Favorites, Search } from "../screens/index";
+import { DetailedView, Home, Favorites, Search, Cart } from "../screens/index";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +34,14 @@ const SearchStack = () => {
     );
 };
 
+const CartStack = () => {
+    return (
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Cart" component={Cart} />
+        </Stack.Navigator>
+    );
+};
+
 const ShopNavigator = () => {
     return (
         <>
@@ -45,6 +53,7 @@ const ShopNavigator = () => {
                 <Tab.Screen name="HomeTab" component={HomeStack} />
                 <Tab.Screen name="FavTab" component={FavsStack} />
                 <Tab.Screen name="SearchTab" component={SearchStack} />
+                <Tab.Screen name="CartTab" component={CartStack} />
             </Tab.Navigator>
         </>
     );

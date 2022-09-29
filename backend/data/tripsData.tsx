@@ -1,4 +1,4 @@
-import { Trips } from "../../App";
+import { Trips } from "../../types/trips";
 
 const tripsData: Trips = [
     {

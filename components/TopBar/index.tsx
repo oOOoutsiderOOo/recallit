@@ -1,14 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../../constants/colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 
 const TopBar = () => {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.topBar}>
             <View style={styles.logo}>
                 <Text style={styles.logoText}>reKall/it</Text>
-                <Ionicons name="cart-outline" size={28} color={colors.white} />
+                <TouchableOpacity onPress={() => navigation.navigate("CartTab", { screen: "Cart" })}>
+                    <Ionicons name="cart-outline" size={28} color={colors.white} />
+                </TouchableOpacity>
             </View>
             <View style={styles.navMenu}></View>
             <View style={styles.userMenu}></View>
