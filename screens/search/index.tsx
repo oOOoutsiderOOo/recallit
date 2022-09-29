@@ -59,7 +59,7 @@ export default function Search({ navigation }) {
                     })}
                 {emptyResult && <Text style={styles.empty}>Nothing Found :(</Text>}
             </ScrollView>
-            <BottomBar navigation={navigation} />
+            <BottomBar navigation={navigation} selectedTab="search" />
         </>
     );
 }

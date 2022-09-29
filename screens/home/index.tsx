@@ -11,7 +11,7 @@ export default function Home({ navigation }) {
                 <NextTrip navigation={navigation} />
                 <CheapTrips navigation={navigation} />
             </ScrollView>
-            <BottomBar navigation={navigation} />
+            <BottomBar navigation={navigation} selectedTab="home" />
         </>
     );
 }

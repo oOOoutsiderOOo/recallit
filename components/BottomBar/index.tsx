@@ -1,24 +1,30 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { colors } from "../../constants/colors";
 
-const bottomBar = ({ navigation }) => {
+const bottomBar = ({ navigation, selectedTab }) => {
+    const [focused, seFocused] = useState(selectedTab);
+
     return (
         <View style={styles.bottomBar}>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("HomeTab", { screen: "Home" })}>
-                <Image style={styles.buttonImage} source={require("../../assets/icons/home.png")} resizeMode="contain" />
+                <Ionicons name={focused === "home" ? "home" : "home-outline"} size={20} color={colors.white} />
                 <Text style={styles.logoText}>Explore</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SearchTab", { screen: "Search" })}>
-                <Image style={styles.buttonImage} source={require("../../assets/icons/search.png")} resizeMode="contain" />
+                <Ionicons name={focused === "search" ? "search" : "search-outline"} size={20} color={colors.white} />
+
                 <Text style={styles.logoText}>Search</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("FavTab", { screen: "Fav" })}>
-                <Image style={styles.buttonImage} source={require("../../assets/icons/favW.png")} resizeMode="contain" />
+                <Ionicons name={focused === "fav" ? "heart" : "heart-outline"} size={20} color={colors.white} />
+
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
-                <Image style={styles.buttonImage} source={require("../../assets/icons/user.png")} resizeMode="contain" />
+                <Ionicons name={focused === "user" ? "person" : "person-outline"} size={20} color={colors.white} />
+
                 <Text style={styles.logoText}>Account</Text>
             </TouchableOpacity>
         </View>

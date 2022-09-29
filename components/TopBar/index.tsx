@@ -9,7 +9,6 @@ const TopBar = () => {
             <View style={styles.logo}>
                 <Text style={styles.logoText}>reKall/it</Text>
                 <Ionicons name="cart-outline" size={28} color={colors.white} />
-                {/* <Image source={require("../../assets/icons/shopping-cart.png")} /> */}
             </View>
             <View style={styles.navMenu}></View>
             <View style={styles.userMenu}></View>

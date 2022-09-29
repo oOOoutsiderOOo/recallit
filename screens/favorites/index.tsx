@@ -42,7 +42,7 @@ export default function Favorites({ navigation }) {
                     })}
                 {!allTrips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
             </ScrollView>
-            <BottomBar navigation={navigation} />
+            <BottomBar navigation={navigation} selectedTab="fav" />
         </>
     );
 }
