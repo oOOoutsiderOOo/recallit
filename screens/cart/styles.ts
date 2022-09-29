@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 100,
         borderRadius: 50,
-        marginBottom: 20,
+        marginBottom: 30,
     },
 
     checkoutText: {

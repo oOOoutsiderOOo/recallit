@@ -41,7 +41,7 @@ export default function Cart({ navigation }) {
             </ScrollView>
             <View style={styles.checkoutWrapper}>
                 <View>
-                    <Text style={styles.details}>Total: 3BTC 50 DOGE</Text>
+                    <Text style={styles.details}>Total: 3 BTC 50 DOGE</Text>
                 </View>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.checkoutText}>Checkout</Text>
