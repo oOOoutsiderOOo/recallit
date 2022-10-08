@@ -20,10 +20,16 @@ export const addItem = (trip: Trip) => {
     };
 };
 
-export const removeItem = (id: number) => ({
-    type: REMOVE_ITEM,
-    tripId: id,
-});
+export const removeItem = (id: number) => {
+    return async dispatch => {
+        try {
+            await axios.delete(`${URL_API}Trips/${id}.json`);
+            dispatch({ type: REMOVE_ITEM, tripId: id });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+};
 
 export const getCartContents = () => {
     return async dispatch => {
