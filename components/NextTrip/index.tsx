@@ -4,6 +4,7 @@ import { colors } from "../../constants/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTrip, setFav } from "../../store/actions/trip.action";
 import { Trip, Trips } from "../../types/trips";
+import { images } from "../../constants/images";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 
     return (
         <TouchableOpacity style={styles.tripCard} onPress={() => handleSelectItem(trip)}>
-            <ImageBackground source={trip.image} resizeMode="cover" style={styles.image}>
+            <ImageBackground source={images[trip.image]} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
                     <TouchableOpacity style={styles.fav} onPress={() => handleFav(trip.id)}>
                         <Image source={trip.fav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />

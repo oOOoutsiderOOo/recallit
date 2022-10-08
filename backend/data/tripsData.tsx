@@ -3,7 +3,7 @@ import { Trips } from "../../types/trips";
 const tripsData: Trips = [
     {
         id: 0,
-        image: require("../../assets/images/locations/underCity.jpg"),
+        image: "underCity",
         text: "Live the 40's in this amazing underwater city!",
         fav: true,
         price: "1 BTC",
@@ -13,7 +13,7 @@ const tripsData: Trips = [
     },
     {
         id: 1,
-        image: require("../../assets/images/locations/desert.jpg"),
+        image: "desert",
         text: "Get hot (very hot) in the infinite desert",
         fav: false,
         price: "1 BTC",
@@ -23,7 +23,7 @@ const tripsData: Trips = [
     },
     {
         id: 2,
-        image: require("../../assets/images/locations/postField.jpg"),
+        image: "postField",
         text: "Find a moment to relax in this old farm (before the next bomb drops)",
         fav: true,
         price: "1 BTC",
@@ -33,7 +33,7 @@ const tripsData: Trips = [
     },
     {
         id: 3,
-        image: require("../../assets/images/locations/urbex.jpg"),
+        image: "urbex",
         text: "Experience Urbex without the risk of getting murdered by a junkie",
         fav: true,
         price: "0.5 BTC",
@@ -43,7 +43,7 @@ const tripsData: Trips = [
     },
     {
         id: 990,
-        image: require("../../assets/images/locations/dino.png"),
+        image: "dino",
         text: "The dinosaurs",
         fav: false,
         price: "1 DOGE",
@@ -53,7 +53,7 @@ const tripsData: Trips = [
     },
     {
         id: 991,
-        image: require("../../assets/images/locations/medievalFarm.png"),
+        image: "medievalFarm",
         text: "Some medieval farm or something",
         fav: false,
         price: "1 DOGE",
@@ -63,7 +63,7 @@ const tripsData: Trips = [
     },
     {
         id: 992,
-        image: require("../../assets/images/locations/pirates.jpg"),
+        image: "pirates",
         text: "Pirates?",
         fav: true,
         price: "1 DOGE",
@@ -73,7 +73,7 @@ const tripsData: Trips = [
     },
     {
         id: 993,
-        image: require("../../assets/images/locations/mars.jpg"),
+        image: "mars",
         text: "Mars... kinda",
         fav: true,
         price: "1 DOGE",

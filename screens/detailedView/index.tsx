@@ -6,6 +6,7 @@ import { BottomBar } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFav } from "../../store/actions/trip.action";
 import { addItem } from "../../store/actions/cart.action";
+import { images } from "../../constants/images";
 
 export default function DetailedView({ navigation }) {
     const trip = useSelector(state => state.trips.selectedTrip);
@@ -34,15 +35,16 @@ export default function DetailedView({ navigation }) {
         dispatch(setFav(id));
     };
 
-    const handleBookNow = (id: number) => {
-        dispatch(addItem(id));
+    const handleBookNow = trip => {
+        dispatch(addItem(trip));
+        navigation.navigate("CartTab");
     };
 
     return (
         <>
             <ScrollView style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <Image source={trip.image} style={styles.image} resizeMode={"cover"} />
+                    <Image source={images[trip.image]} style={styles.image} resizeMode={"cover"} />
                 </View>
                 <View>
                     <Text style={styles.title}>{trip.text}</Text>

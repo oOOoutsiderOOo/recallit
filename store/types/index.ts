@@ -6,4 +6,5 @@ export const tripTypes = {
 export const cartTypes = {
     REMOVE_ITEM: "REMOVE_ITEM",
     ADD_ITEM: "ADD_ITEM",
+    GET_CART_CONTENTS: "GET_CART_CONTENTS",
 };
