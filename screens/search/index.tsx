@@ -1,18 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity, TextInput } from "react-native";
-import { TripsContext } from "../../contexts/TripsContext";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
-import { Trip } from "../../types/trips";
+import { Trip, Trips } from "../../types/trips";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTrip } from "../../store/actions/trip.action";
 
 export default function Search({ navigation }) {
-    const { trips, setSelectedTrip } = useContext(TripsContext);
+    const dispatch = useDispatch();
+    const trips: Trips = useSelector(state => state.trips.trips);
+
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [emptyResult, setEmptyResult] = useState(false);
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        setSelectedTrip(selectedTrip);
+        dispatch(selectTrip(selectedTrip.id));
         navigation.push("DetailedView");
     };
 

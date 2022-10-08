@@ -35,7 +35,6 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 }
 
 const CheapTrips = ({ navigation }) => {
-    //const { trips }: any = useContext(TripsContext);
     const trips: Trips = useSelector(state => state.trips.trips);
 
     return (
