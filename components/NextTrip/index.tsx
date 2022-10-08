@@ -1,32 +1,38 @@
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
 import { colors } from "../../constants/colors";
+import { useDispatch, useSelector } from "react-redux";
 import { TripsContext } from "../../contexts/TripsContext";
+import { selectTrip, setFav } from "../../store/actions/trip.action";
 import { Trip, Trips } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
-    const { trips, setTrips, setSelectedTrip } = useContext(TripsContext);
+    const { setTrips, setSelectedTrip } = useContext(TripsContext);
+    const trips: Trips = useSelector(state => state.trips.trips);
+    const dispatch = useDispatch();
 
-    const handleFav = () => {
-        const tempTrips = trips.map(item => {
+    const handleFav = (id: number) => {
+        /*         const tempTrips = trips.map(item => {
             if (item.id === trip.id) {
                 return { ...item, fav: !item.fav };
             }
             return item;
         });
-        setTrips([...tempTrips]);
+        setTrips([...tempTrips]); */
+        dispatch(setFav(id));
     };
 
     const handleSelectItem = (selectedTrip: Trip) => {
         setSelectedTrip(selectedTrip);
         navigation.navigate("DetailedView");
+        dispatch(selectTrip(selectedTrip.id));
     };
 
     return (
         <TouchableOpacity style={styles.tripCard} onPress={() => handleSelectItem(trip)}>
             <ImageBackground source={trip.image} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
-                    <TouchableOpacity style={styles.fav} onPress={() => handleFav()}>
+                    <TouchableOpacity style={styles.fav} onPress={() => handleFav(trip.id)}>
                         <Image source={trip.fav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />
                     </TouchableOpacity>
                 </View>
@@ -40,7 +46,9 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 }
 
 const NextTrip = ({ navigation }) => {
-    const { trips }: { trips: Trips } = useContext(TripsContext);
+    //const { trips }: { trips: Trips } = useContext(TripsContext);
+    const trips: Trips = useSelector(state => state.trips.trips);
+
     return (
         <>
             <Text style={styles.title}>Featured Experiences</Text>
