@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
+import { ScrollView, Text, View, Image, TouchableOpacity, ActivityIndicator } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
@@ -19,7 +19,6 @@ export default function Cart({ navigation }) {
 
     useEffect(() => {
         dispatch(getCartContents());
-        console.log(cartItems);
     }, []);
 
     return (

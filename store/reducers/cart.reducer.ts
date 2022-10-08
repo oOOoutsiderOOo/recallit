@@ -14,7 +14,6 @@ const cartReducer = (state = initialState, action: any) => {
 
         case ADD_ITEM:
             if (state.find(trip => trip.id === action.trip.id)) return state;
-            console.log(action.trip);
             return [...state, action.trip];
 
         //TODO agregar modales

@@ -20,7 +20,7 @@ const bottomBar = ({ navigation, selectedTab }: { navigation: any; selectedTab: 
                 <Ionicons name={focused === "fav" ? "heart" : "heart-outline"} size={20} color={colors.white} />
                 <Text style={styles.logoText}>Favorites</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("AccountTab", { screen: "Account" })}>
                 <Ionicons name={focused === "user" ? "person" : "person-outline"} size={20} color={colors.white} />
                 <Text style={styles.logoText}>Account</Text>
             </TouchableOpacity>
