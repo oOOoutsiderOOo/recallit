@@ -1,14 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
 import { colors } from "../../constants/colors";
 import { useDispatch, useSelector } from "react-redux";
-import { TripsContext } from "../../contexts/TripsContext";
 import { selectTrip, setFav } from "../../store/actions/trip.action";
 import { Trip, Trips } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
-    const { setTrips, setSelectedTrip } = useContext(TripsContext);
-    const trips: Trips = useSelector(state => state.trips.trips);
     const dispatch = useDispatch();
 
     const handleFav = (id: number) => {
@@ -16,9 +13,8 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
     };
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        setSelectedTrip(selectedTrip);
-        navigation.navigate("DetailedView");
         dispatch(selectTrip(selectedTrip.id));
+        navigation.navigate("DetailedView");
     };
 
     return (
@@ -39,7 +35,6 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 }
 
 const NextTrip = ({ navigation }) => {
-    //const { trips }: { trips: Trips } = useContext(TripsContext);
     const trips: Trips = useSelector(state => state.trips.trips);
 
     return (

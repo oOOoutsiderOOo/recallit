@@ -1,24 +1,19 @@
-import React, { Dispatch, SetStateAction, useContext } from "react";
+import React from "react";
 import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../constants/colors";
-import { TripsContext } from "../../contexts/TripsContext";
-import { Trip } from "../../types/trips";
+import { selectTrip, setFav } from "../../store/actions/trip.action";
+import { Trip, Trips } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
-    const { trips, setTrips, setSelectedTrip } = useContext(TripsContext);
+    const dispatch = useDispatch();
 
-    const handleFav = () => {
-        const tempTrips = trips.map(item => {
-            if (item.id === trip.id) {
-                return { ...item, fav: !item.fav };
-            }
-            return item;
-        });
-        setTrips([...tempTrips]);
+    const handleFav = (id: number) => {
+        dispatch(setFav(id));
     };
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        setSelectedTrip(selectedTrip);
+        dispatch(selectTrip(selectedTrip.id));
         navigation.navigate("DetailedView");
     };
 
@@ -26,7 +21,7 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
         <TouchableOpacity style={styles.tripCard} onPress={() => handleSelectItem(trip)}>
             <ImageBackground source={trip.image} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
-                    <TouchableOpacity style={styles.fav} onPress={() => handleFav()}>
+                    <TouchableOpacity style={styles.fav} onPress={() => handleFav(trip.id)}>
                         <Image source={trip.fav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />
                     </TouchableOpacity>
                 </View>
@@ -40,7 +35,8 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 }
 
 const CheapTrips = ({ navigation }) => {
-    const { trips }: any = useContext(TripsContext);
+    //const { trips }: any = useContext(TripsContext);
+    const trips: Trips = useSelector(state => state.trips.trips);
 
     return (
         <>

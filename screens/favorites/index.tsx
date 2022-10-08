@@ -1,17 +1,18 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
-import { TripsContext } from "../../contexts/TripsContext";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
-import { Trip } from "../../types/trips";
+import { Trip, Trips } from "../../types/trips";
+import { selectTrip } from "../../store/actions/trip.action";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Favorites({ navigation }) {
-    const { trips, setSelectedTrip } = useContext(TripsContext);
+    const dispatch = useDispatch();
 
-    const [allTrips, setAllTrips] = useState(trips);
+    const trips: Trips = useSelector(state => state.trips.trips);
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        setSelectedTrip(selectedTrip);
+        dispatch(selectTrip(selectedTrip.id));
         navigation.push("DetailedView");
     };
 
@@ -21,7 +22,7 @@ export default function Favorites({ navigation }) {
                 <Text style={styles.headerTitle}>Favorites</Text>
             </View>
             <ScrollView style={styles.ScrollViewContainer}>
-                {allTrips
+                {trips
                     .filter(trip => trip.fav === true)
                     .map(trip => {
                         return (
@@ -40,7 +41,7 @@ export default function Favorites({ navigation }) {
                             </TouchableOpacity>
                         );
                     })}
-                {!allTrips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
+                {!trips.filter(trip => trip.fav === true)[0] && <Text style={styles.empty}>Start adding some favs!</Text>}
             </ScrollView>
             <BottomBar navigation={navigation} selectedTab="fav" />
         </>
