@@ -5,6 +5,7 @@ import { colors } from "../../constants/colors";
 import { Trip, Trips } from "../../types/trips";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTrip } from "../../store/actions/trip.action";
+import { images } from "../../constants/images";
 
 export default function Search({ navigation }) {
     const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export default function Search({ navigation }) {
                     searchResult.map((trip: Trip) => {
                         return (
                             <TouchableOpacity style={styles.card} key={trip.id} onPress={() => handleSelectItem(trip)}>
-                                <Image source={trip.image} resizeMode="cover" style={styles.image}></Image>
+                                <Image source={images[trip.image]} resizeMode="cover" style={styles.image}></Image>
                                 <View style={styles.textContainer}>
                                     <Text style={styles.title}>{trip.text}</Text>
                                     <View style={styles.secondRowContainer}>
