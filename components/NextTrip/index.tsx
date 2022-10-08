@@ -12,13 +12,6 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
     const dispatch = useDispatch();
 
     const handleFav = (id: number) => {
-        /*         const tempTrips = trips.map(item => {
-            if (item.id === trip.id) {
-                return { ...item, fav: !item.fav };
-            }
-            return item;
-        });
-        setTrips([...tempTrips]); */
         dispatch(setFav(id));
     };
 

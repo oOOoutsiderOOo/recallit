@@ -11,7 +11,7 @@ type InitialState = {
 
 const initialState: InitialState = {
     trips: tripsData,
-    selectedTrip: {},
+    selectedTrip: null,
 };
 
 const tripsReducer = (state = initialState, action: any) => {
@@ -31,6 +31,7 @@ const tripsReducer = (state = initialState, action: any) => {
                 }
                 return item;
             });
+            if (state.selectedTrip) return { ...state, trips: tempTrips, selectedTrip: { ...state.selectedTrip, fav: !state.selectedTrip.fav } };
 
             return { ...state, trips: tempTrips };
 

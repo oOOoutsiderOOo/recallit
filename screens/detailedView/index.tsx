@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Text, View, Image, TouchableOpacity, ScrollView, Share } from "react-native";
 import styles from "./styles";
 import { icons } from "../../constants/iconsScreen";
 import { BottomBar } from "../../components";
-import { Trip } from "../../types/trips";
-import { TripsContext } from "../../contexts/TripsContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setFav } from "../../store/actions/trip.action";
 
 export default function DetailedView({ navigation }) {
-    const { selectedTrip, setTrips, trips } = useContext(TripsContext);
-    const [trip, setTrip] = useState(selectedTrip);
+    const trip = useSelector(state => state.trips.selectedTrip);
+    const dispatch = useDispatch();
 
     const onShare = async () => {
         try {
@@ -29,15 +29,8 @@ export default function DetailedView({ navigation }) {
         }
     };
 
-    const handleFav = () => {
-        const tempTrips = trips.map((item: Trip) => {
-            if (item.id === trip.id) {
-                return { ...item, fav: !item.fav };
-            }
-            return item;
-        });
-        setTrips([...tempTrips]);
-        setTrip({ ...trip, fav: !trip.fav });
+    const handleFav = (id: number) => {
+        dispatch(setFav(id));
     };
 
     return (
@@ -56,7 +49,7 @@ export default function DetailedView({ navigation }) {
                         <View style={styles.actionsContainer}>
                             <View style={styles.action}>
                                 <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
-                                <TouchableOpacity onPress={handleFav}>
+                                <TouchableOpacity onPress={() => handleFav(trip.id)}>
                                     <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.favWhite} />
                                 </TouchableOpacity>
                             </View>
@@ -79,7 +72,7 @@ export default function DetailedView({ navigation }) {
                     </View>
                 </View>
             </ScrollView>
-            <BottomBar navigation={navigation} />
+            <BottomBar navigation={navigation} selectedTab={""} />
         </>
     );
 }
