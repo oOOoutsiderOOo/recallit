@@ -5,6 +5,7 @@ import { icons } from "../../constants/iconsScreen";
 import { BottomBar } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { setFav } from "../../store/actions/trip.action";
+import { addItem } from "../../store/actions/cart.action";
 
 export default function DetailedView({ navigation }) {
     const trip = useSelector(state => state.trips.selectedTrip);
@@ -31,6 +32,10 @@ export default function DetailedView({ navigation }) {
 
     const handleFav = (id: number) => {
         dispatch(setFav(id));
+    };
+
+    const handleBookNow = (id: number) => {
+        dispatch(addItem(id));
     };
 
     return (
@@ -60,7 +65,7 @@ export default function DetailedView({ navigation }) {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        <TouchableOpacity style={styles.bookButton}>
+                        <TouchableOpacity style={styles.bookButton} onPress={() => handleBookNow(trip)}>
                             <Text>Book Now</Text>
                         </TouchableOpacity>
                     </View>

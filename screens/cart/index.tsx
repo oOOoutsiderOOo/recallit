@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
-import cartData from "../../backend/data/cart";
 import styles from "./styles";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../../store/actions/cart.action";
 
 export default function Cart({ navigation }) {
-    const [cartItems, setCartItems] = useState(cartData);
+    const dispatch = useDispatch();
+    const cartItems = useSelector(state => state.cart);
 
     const handleDelete = (id: number) => {
-        setCartItems(cartItems.filter(item => item.id !== id));
+        dispatch(removeItem(id));
     };
 
     return (

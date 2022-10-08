@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from "redux";
-import { testReducer, tripsReducer } from "./reducers";
+import { cartReducer, testReducer, tripsReducer } from "./reducers";
 
 const rootReducer = combineReducers({
     trips: tripsReducer,
     test: testReducer,
+    cart: cartReducer,
 });
 
 export default createStore(rootReducer);
