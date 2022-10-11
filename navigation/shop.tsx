@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { DetailedView, Home, Favorites, Search, Cart, Account } from "../screens/index";
+import { Banner, TopBar } from "../components";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,6 +54,8 @@ const AccountStack = () => {
 const ShopNavigator = () => {
     return (
         <>
+            <TopBar />
+            <Banner />
             <Tab.Navigator
                 screenOptions={{
                     headerShown: false,

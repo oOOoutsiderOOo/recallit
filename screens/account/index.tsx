@@ -1,9 +1,14 @@
 import React from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
+import { logOut } from "../../store/actions/auth.action";
 
 export default function Account({ navigation }) {
+    const userId = useSelector(state => state.auth.userId);
+    const dispatch = useDispatch();
+
     return (
         <>
             <View style={styles.header}>
@@ -28,9 +33,12 @@ export default function Account({ navigation }) {
                 <TouchableOpacity style={styles.menuElement}>
                     <Text style={styles.menuElementText}>About</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.menuElement}>
+                    <Text style={styles.menuElementText}>{`userId ${userId}`}</Text>
+                </TouchableOpacity>
             </ScrollView>
             <View style={styles.logoutViewContainer}>
-                <TouchableOpacity style={styles.logoutContainer}>
+                <TouchableOpacity style={styles.logoutContainer} onPress={() => dispatch(logOut())}>
                     <Text style={styles.logoutText}>Logout</Text>
                 </TouchableOpacity>
             </View>

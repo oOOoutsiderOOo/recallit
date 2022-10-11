@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
         height: 200,
         justifyContent: "center",
         alignItems: "center",
+        paddingTop: 50,
     },
 
     image: {
@@ -40,12 +41,20 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         paddingHorizontal: 10,
         paddingTop: 4,
-        marginTop: 20,
+    },
+
+    errorText: {
+        fontSize: 12,
+        fontFamily: "Poppins-Regular",
+        color: colors.purple,
+        marginTop: 2,
+        marginStart: 10,
+        marginBottom: 5,
     },
 
     button: {
         backgroundColor: colors.accent,
-        marginVertical: 20,
+
         paddingVertical: 10,
         paddingHorizontal: 10,
         borderRadius: 20,
@@ -63,6 +72,7 @@ const styles = StyleSheet.create({
         color: colors.accent,
         textAlign: "center",
         marginBottom: 10,
+        marginTop: 5,
     },
 
     signLogWrapper: {

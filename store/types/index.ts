@@ -8,3 +8,9 @@ export const cartTypes = {
     ADD_ITEM: "ADD_ITEM",
     GET_CART_CONTENTS: "GET_CART_CONTENTS",
 };
+
+export const authTypes = {
+    SIGN_UP: "SIGN_UP",
+    LOG_IN: "LOG_IN",
+    LOG_OUT: "LOG_OUT",
+};

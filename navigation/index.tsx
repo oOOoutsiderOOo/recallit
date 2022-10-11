@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-
+import { useSelector } from "react-redux";
 import ShopNavigator from "./shop";
-import { TopBar, Banner } from "../components";
 import AuthNavigator from "./auth";
 
 const AppNavigator = () => {
-    const [isLogged, setIsLogged] = useState(false);
+    const userId = useSelector(state => state.auth.userId);
 
-    return (
-        <NavigationContainer>
-            <TopBar />
-            <Banner />
-            {isLogged ? <AuthNavigator /> : <ShopNavigator />}
-        </NavigationContainer>
-    );
+    return <NavigationContainer>{userId ? <ShopNavigator /> : <AuthNavigator />}</NavigationContainer>;
 };
 
 export default AppNavigator;
