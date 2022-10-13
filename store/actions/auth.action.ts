@@ -2,7 +2,7 @@ import axios from "axios";
 import { URL_AUTH_SIGN_IN, URL_AUTH_SIGN_UP } from "../../constants/firebase";
 import { authTypes } from "../types";
 
-const { LOG_IN, SIGN_UP, LOG_OUT } = authTypes;
+const { LOG_IN, SIGN_UP, LOG_OUT, SET_ERROR } = authTypes;
 
 export const signUp = (email: string, password: string) => {
     return async dispatch => {
@@ -43,9 +43,16 @@ export const logIn = (email: string, password: string) => {
                 userId: res.data.localId,
             });
         } catch (err) {
-            console.log(err);
+            const errorCode = err.response.status === 400 && "Wrong email or password";
+            dispatch({
+                type: LOG_IN,
+                token: null,
+                userId: null,
+                errorCode,
+            });
         }
     };
 };
 
 export const logOut = () => ({ type: LOG_OUT });
+export const resetError = () => ({ type: SET_ERROR, errorCode: "" });

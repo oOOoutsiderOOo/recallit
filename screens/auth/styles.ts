@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     },
 
     errorText: {
+        height: 15,
         fontSize: 12,
         fontFamily: "Poppins-Regular",
         color: colors.purple,

@@ -1,6 +1,6 @@
 const emailValidationFormat =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const minPasswordLength = 5;
+const minPasswordLength = 6;
 
 export const validateInput = (name: string, value: string) => {
     let hasError = false;
@@ -10,8 +10,7 @@ export const validateInput = (name: string, value: string) => {
             if (value.trim() === "") {
                 hasError = true;
                 error = "Please enter an email ";
-            }
-            if (!emailValidationFormat.test(value)) {
+            } else if (!emailValidationFormat.test(value)) {
                 hasError = true;
                 error = "Email is not valid";
             } else {
@@ -42,10 +41,13 @@ export const validateInput = (name: string, value: string) => {
 
 export const onInputChange = (type, value, dispatch, formState) => {
     const { hasError, error } = validateInput(type, value);
+    let isFormValid = true;
 
-    let isFormValid = false;
-    if (formState.email.hasError === false && formState.password.hasError === false) {
+    const otherField = type === "email" ? "password" : "email";
+    if (hasError === false && formState[otherField].hasError === false) {
         isFormValid = true;
+    } else {
+        isFormValid = false;
     }
 
     dispatch({
