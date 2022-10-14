@@ -5,7 +5,8 @@ import ShopNavigator from "./shop";
 import AuthNavigator from "./auth";
 
 const AppNavigator = () => {
-    const userId = useSelector(state => state.auth.userId);
+    const userId = useSelector(state => state.auth.value.userId);
+    /* const userId = null; */
 
     return <NavigationContainer>{userId ? <ShopNavigator /> : <AuthNavigator />}</NavigationContainer>;
 };

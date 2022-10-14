@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { ScrollView, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn, resetError, signUp } from "../../store/actions/auth.action";
+import { resetError } from "../../store/actions/auth.action";
+import { logIn, signUp } from "../../store/slices/auth.slice";
+import { getCartContents } from "../../store/slices/cart.slice";
 import { onInputChange } from "../../utils/authForm";
 import styles from "./styles";
 
@@ -40,8 +42,8 @@ export default function Auth({ navigation }) {
 
     const onHandleSubmit = () => {
         isLogin
-            ? dispatch(logIn(formState.email.value, formState.password.value))
-            : dispatch(signUp(formState.email.value, formState.password.value));
+            ? dispatch(logIn({ email: formState.email.value, password: formState.password.value }))
+            : dispatch(signUp({ email: formState.email.value, password: formState.password.value }));
     };
 
     const onHandleChange = (value: string, type: string) => {
@@ -83,7 +85,9 @@ export default function Auth({ navigation }) {
                     </TouchableOpacity>
                     {isLogin && (
                         <TouchableOpacity style={styles.forgotButton}>
-                            <Text style={styles.forgotText}>Forgot password?</Text>
+                            <Text style={styles.forgotText} onPress={() => dispatch(getCartContents())}>
+                                Forgot password?
+                            </Text>
                         </TouchableOpacity>
                     )}
                     <View style={styles.signLogWrapper}>

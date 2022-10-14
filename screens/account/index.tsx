@@ -3,10 +3,10 @@ import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "rea
 import { useSelector, useDispatch } from "react-redux";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
-import { logOut } from "../../store/actions/auth.action";
+import { logIn, logOut } from "../../store/slices/auth.slice";
 
 export default function Account({ navigation }) {
-    const userId = useSelector(state => state.auth.userId);
+    const userId = useSelector(state => state.auth.value.userId);
     const dispatch = useDispatch();
 
     return (

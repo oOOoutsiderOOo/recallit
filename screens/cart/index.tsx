@@ -5,16 +5,17 @@ import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
 import styles from "./styles";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, getCartContents } from "../../store/actions/cart.action";
+//import { removeItem } from "../../store/actions/cart.action";
 import { Trip } from "../../types/trips";
 import { images } from "../../constants/images";
+import { getCartContents, removeItem } from "../../store/slices/cart.slice";
 
 export default function Cart({ navigation }) {
     const dispatch = useDispatch();
-    const cartItems = useSelector(state => state.cart);
+    const cartItems = useSelector(state => state.cart.value);
 
     const handleDelete = (id: number) => {
-        dispatch(removeItem(id));
+        dispatch(removeItem({ id }));
     };
 
     useEffect(() => {

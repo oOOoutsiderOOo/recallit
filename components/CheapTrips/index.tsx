@@ -3,18 +3,18 @@ import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, Scrol
 import { useDispatch, useSelector } from "react-redux";
 import { colors } from "../../constants/colors";
 import { images } from "../../constants/images";
-import { selectTrip, setFav } from "../../store/actions/trip.action";
+import { selectTrip, setFav } from "../../store/slices/trips.slice";
 import { Trip, Trips } from "../../types/trips";
 
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
     const dispatch = useDispatch();
 
     const handleFav = (id: number) => {
-        dispatch(setFav(id));
+        dispatch(setFav({ id }));
     };
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        dispatch(selectTrip(selectedTrip.id));
+        dispatch(selectTrip({ id: selectedTrip.id }));
         navigation.navigate("DetailedView");
     };
 
@@ -36,7 +36,7 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
 }
 
 const CheapTrips = ({ navigation }) => {
-    const trips: Trips = useSelector(state => state.trips.trips);
+    const trips: Trips = useSelector(state => state.trips.value.trips);
 
     return (
         <>

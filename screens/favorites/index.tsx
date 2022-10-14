@@ -3,17 +3,17 @@ import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "rea
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
 import { Trip, Trips } from "../../types/trips";
-import { selectTrip } from "../../store/actions/trip.action";
 import { useDispatch, useSelector } from "react-redux";
 import { images } from "../../constants/images";
+import { selectTrip } from "../../store/slices/trips.slice";
 
 export default function Favorites({ navigation }) {
     const dispatch = useDispatch();
 
-    const trips: Trips = useSelector(state => state.trips.trips);
+    const trips: Trips = useSelector(state => state.trips.value.trips);
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        dispatch(selectTrip(selectedTrip.id));
+        dispatch(selectTrip({ id: selectedTrip.id }));
         navigation.push("DetailedView");
     };
 

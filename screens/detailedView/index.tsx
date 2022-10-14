@@ -4,12 +4,12 @@ import styles from "./styles";
 import { icons } from "../../constants/iconsScreen";
 import { BottomBar } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { setFav } from "../../store/actions/trip.action";
-import { addItem } from "../../store/actions/cart.action";
 import { images } from "../../constants/images";
+import { setFav } from "../../store/slices/trips.slice";
+import { addItem } from "../../store/slices/cart.slice";
 
 export default function DetailedView({ navigation }) {
-    const trip = useSelector(state => state.trips.selectedTrip);
+    const trip = useSelector(state => state.trips.value.selectedTrip);
     const dispatch = useDispatch();
 
     const onShare = async () => {
@@ -32,11 +32,11 @@ export default function DetailedView({ navigation }) {
     };
 
     const handleFav = (id: number) => {
-        dispatch(setFav(id));
+        dispatch(setFav({ id }));
     };
 
     const handleBookNow = trip => {
-        dispatch(addItem(trip));
+        dispatch(addItem({ trip }));
         navigation.navigate("CartTab");
     };
 

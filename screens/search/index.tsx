@@ -4,19 +4,20 @@ import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
 import { Trip, Trips } from "../../types/trips";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTrip } from "../../store/actions/trip.action";
+
 import { images } from "../../constants/images";
+import { selectTrip } from "../../store/slices/trips.slice";
 
 export default function Search({ navigation }) {
     const dispatch = useDispatch();
-    const trips: Trips = useSelector(state => state.trips.trips);
+    const trips: Trips = useSelector(state => state.trips.value.trips);
 
     const [searchText, setSearchText] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [emptyResult, setEmptyResult] = useState(false);
 
     const handleSelectItem = (selectedTrip: Trip) => {
-        dispatch(selectTrip(selectedTrip.id));
+        dispatch(selectTrip({ id: selectedTrip.id }));
         navigation.push("DetailedView");
     };
 
