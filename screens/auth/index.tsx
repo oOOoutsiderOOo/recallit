@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { ScrollView, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { resetError } from "../../store/actions/auth.action";
 import { logIn, signUp } from "../../store/slices/auth.slice";
 import { getCartContents } from "../../store/slices/cart.slice";
 import { onInputChange } from "../../utils/authForm";
@@ -47,7 +46,7 @@ export default function Auth({ navigation }) {
     };
 
     const onHandleChange = (value: string, type: string) => {
-        dispatch(resetError());
+        //dispatch(resetError());
         onInputChange(type, value, dispatchFormState, formState);
     };
 

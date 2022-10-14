@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { BottomBar } from "../../components/index";
 import { colors } from "../../constants/colors";
-import { logIn, logOut } from "../../store/slices/auth.slice";
+import { logOut } from "../../store/slices/auth.slice";
+import { setImageURI } from "../../store/slices/userSettings.slice";
 
 export default function Account({ navigation }) {
-    const userId = useSelector(state => state.auth.value.userId);
     const dispatch = useDispatch();
 
     return (
@@ -15,6 +15,9 @@ export default function Account({ navigation }) {
                 <Text style={styles.headerTitle}>Account</Text>
             </View>
             <ScrollView style={styles.scrollViewContainer}>
+                <TouchableOpacity style={styles.menuElement} onPress={() => dispatch(setImageURI())}>
+                    <Text style={styles.menuElementText}>Change profile picture</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.menuElement}>
                     <Text style={styles.menuElementText}>Settings</Text>
                 </TouchableOpacity>
@@ -33,9 +36,9 @@ export default function Account({ navigation }) {
                 <TouchableOpacity style={styles.menuElement}>
                     <Text style={styles.menuElementText}>About</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuElement}>
+                {/* <TouchableOpacity style={styles.menuElement}>
                     <Text style={styles.menuElementText}>{`userId ${userId}`}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </ScrollView>
             <View style={styles.logoutViewContainer}>
                 <TouchableOpacity style={styles.logoutContainer} onPress={() => dispatch(logOut())}>
