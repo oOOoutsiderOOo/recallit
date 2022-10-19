@@ -38,12 +38,48 @@ export const addUser = (id: string, email: string, picture = "") => {
     return promise;
 };
 
+export const updatePicture = (id: string, picture = "") => {
+    const promise = new Promise((resolve: any, reject: any) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                "UPDATE users SET picture = ? WHERE id = ?;",
+                [picture, id],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            );
+        });
+    });
+    return promise;
+};
+
 export const fetchUsers = () => {
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
                 "SELECT * FROM users;",
                 [],
+                (_, result) => {
+                    resolve(result);
+                },
+                (_, err) => {
+                    reject(err);
+                }
+            );
+        });
+    });
+    return promise;
+};
+
+export const getUser = (id: string) => {
+    const promise = new Promise((resolve: any, reject: any) => {
+        db.transaction(tx => {
+            tx.executeSql(
+                "SELECT * FROM users WHERE id = ?;",
+                [id],
                 (_, result) => {
                     resolve(result);
                 },

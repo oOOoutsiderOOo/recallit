@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { ScrollView, Text, View, Image, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn, signUp } from "../../store/slices/auth.slice";
+import { logIn, signUp } from "../../store/slices/user.slice";
 import { getCartContents } from "../../store/slices/cart.slice";
 import { onInputChange } from "../../utils/authForm";
 import styles from "./styles";
@@ -37,7 +37,7 @@ export default function Auth({ navigation }) {
     const [isLogin, setIslogin] = useState(true);
     const [formState, dispatchFormState] = useReducer(formReducer, initialState);
     const dispatch = useDispatch();
-    const requestError = useSelector(state => state.auth.errorCode);
+    const requestError = useSelector(state => state.user.errorCode);
 
     const onHandleSubmit = () => {
         isLogin

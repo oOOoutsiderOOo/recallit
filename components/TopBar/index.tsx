@@ -4,11 +4,12 @@ import { colors } from "../../constants/colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { setImageURI } from "../../store/slices/userSettings.slice";
+import { setPicture } from "../../store/slices/user.slice";
 
 const TopBar = () => {
     const navigation = useNavigation();
-    const imageURI = useSelector(state => state.settings.value.URI);
+    const imageURI = useSelector(state => state.user.value.picture);
+    const userID = useSelector(state => state.user.value.userId);
     const dispatch = useDispatch();
 
     return (
@@ -19,8 +20,8 @@ const TopBar = () => {
                     <TouchableOpacity onPress={() => navigation.navigate("CartTab", { screen: "Cart" })}>
                         <Ionicons name="cart-outline" size={28} color={colors.white} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => dispatch(setImageURI())}>
-                        <Image style={styles.userPic} source={{ uri: imageURI }} />
+                    <TouchableOpacity onPress={() => dispatch(setPicture({ id: userID }))}>
+                        <Image style={styles.userPic} source={{ uri: imageURI ? imageURI : "https://xsgames.co/randomusers/avatar.php?g=male" }} />
                     </TouchableOpacity>
                 </View>
             </View>
