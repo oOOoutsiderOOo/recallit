@@ -6,8 +6,42 @@ import { colors } from "../../constants/colors";
 import { logOut } from "../../store/slices/auth.slice";
 import { setImageURI } from "../../store/slices/userSettings.slice";
 
+import { addUser, deleteTable, fetchUsers, init } from "../../db";
+
 export default function Account({ navigation }) {
     const dispatch = useDispatch();
+
+    const handleInit = () => {
+        init()
+            .then(() => console.log("database inicializada"))
+            .catch(err => {
+                console.log(err.message);
+            });
+    };
+
+    const handleFecth = () => {
+        fetchUsers()
+            .then(result => console.log(result.rows))
+            .catch(err => {
+                console.log(err.message);
+            });
+    };
+
+    const handleAddUser = () => {
+        addUser()
+            .then(result => console.log(result))
+            .catch(err => {
+                console.log(err.message);
+            });
+    };
+
+    const handleDeleteTable = () => {
+        deleteTable()
+            .then(result => console.log(result))
+            .catch(err => {
+                console.log(err.message);
+            });
+    };
 
     return (
         <>
@@ -18,17 +52,17 @@ export default function Account({ navigation }) {
                 <TouchableOpacity style={styles.menuElement} onPress={() => dispatch(setImageURI())}>
                     <Text style={styles.menuElementText}>Change profile picture</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuElement}>
-                    <Text style={styles.menuElementText}>Settings</Text>
+                <TouchableOpacity style={styles.menuElement} onPress={handleInit}>
+                    <Text style={styles.menuElementText}>Init DB</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuElement}>
-                    <Text style={styles.menuElementText}>Security</Text>
+                <TouchableOpacity style={styles.menuElement} onPress={handleDeleteTable}>
+                    <Text style={styles.menuElementText}>Delete table</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuElement}>
-                    <Text style={styles.menuElementText}>Privacy</Text>
+                <TouchableOpacity style={styles.menuElement} onPress={handleFecth}>
+                    <Text style={styles.menuElementText}>Get db data</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.menuElement}>
-                    <Text style={styles.menuElementText}>Notifications</Text>
+                <TouchableOpacity style={styles.menuElement} onPress={handleAddUser}>
+                    <Text style={styles.menuElementText}>Add test user</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuElement}>
                     <Text style={styles.menuElementText}>Help</Text>
