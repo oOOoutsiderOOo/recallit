@@ -18,9 +18,9 @@ export const tripsSlice = createSlice({
         },
 
         setFav: (state, action) => {
-            const index = state.value.trips.findIndex(trip => trip.id === action.payload.id);
+            const index = state.value.trips.findIndex(trip => trip.id === action.payload.trip.id);
             state.value.trips[index].fav = !state.value.trips[index].fav;
-            if (state.value.trips[index].id === state.value.selectedTrip.id) {
+            if (state.value.selectedTrip && state.value.trips[index].id === state.value.selectedTrip.id) {
                 state.value.selectedTrip.fav = !state.value.selectedTrip.fav;
             }
         },

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { images } from "../../constants/images";
 import { setFav } from "../../store/slices/trips.slice";
 import { addItem } from "../../store/slices/cart.slice";
+import { Trip } from "../../types/trips";
 
 export default function DetailedView({ navigation }) {
     const trip = useSelector(state => state.trips.value.selectedTrip);
@@ -31,8 +32,8 @@ export default function DetailedView({ navigation }) {
         }
     };
 
-    const handleFav = (id: number) => {
-        dispatch(setFav({ id }));
+    const handleFav = (trip: Trip) => {
+        dispatch(setFav({ trip }));
     };
 
     const handleBookNow = trip => {
@@ -56,7 +57,7 @@ export default function DetailedView({ navigation }) {
                         <View style={styles.actionsContainer}>
                             <View style={styles.action}>
                                 <Text style={styles.actionText}>{trip.fav ? "Remove from favorites" : "Add to favorites"}</Text>
-                                <TouchableOpacity onPress={() => handleFav(trip.id)}>
+                                <TouchableOpacity onPress={() => handleFav(trip)}>
                                     <Image style={styles.icon} source={trip.fav ? icons.favFilled : icons.favWhite} />
                                 </TouchableOpacity>
                             </View>

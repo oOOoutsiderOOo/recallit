@@ -9,8 +9,8 @@ import { Trip, Trips } from "../../types/trips";
 export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) {
     const dispatch = useDispatch();
 
-    const handleFav = (id: number) => {
-        dispatch(setFav({ id }));
+    const handleFav = (trip: Trip) => {
+        dispatch(setFav({ trip }));
     };
 
     const handleSelectItem = (selectedTrip: Trip) => {
@@ -22,7 +22,7 @@ export function TripItem({ trip, navigation }: { trip: Trip; navigation: any }) 
         <TouchableOpacity style={styles.tripCard} onPress={() => handleSelectItem(trip)}>
             <ImageBackground source={images[trip.image]} resizeMode="cover" style={styles.image}>
                 <View style={styles.cardTopRow}>
-                    <TouchableOpacity style={styles.fav} onPress={() => handleFav(trip.id)}>
+                    <TouchableOpacity style={styles.fav} onPress={() => handleFav(trip)}>
                         <Image source={trip.fav ? require("../../assets/icons/favouriteF.png") : require("../../assets/icons/favourite.png")} />
                     </TouchableOpacity>
                 </View>
