@@ -98,9 +98,6 @@ export default function Auth({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </KeyboardAvoidingView>
-                <Text style={styles.forgotText}>{`${formState.isFormValid ? "yes" : "no"} ${requestError} emailhaserror ${
-                    formState.email.hasError
-                } passhaserror ${formState.password.hasError}`}</Text>
             </View>
         </>
     );

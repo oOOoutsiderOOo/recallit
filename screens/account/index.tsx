@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
-import { BottomBar } from "../../components/index";
+import { useDispatch, useSelector } from "react-redux";
+import { BottomBar, PicSelectModal } from "../../components/index";
 import { colors } from "../../constants/colors";
-import { logOut } from "../../store/slices/user.slice";
-import { setImageURI } from "../../store/slices/userSettings.slice";
+import { logOut, setPicture } from "../../store/slices/user.slice";
 
 import { addUser, deleteTable, fetchUsers, init } from "../../db";
 
 export default function Account({ navigation }) {
+    const userID = useSelector(state => state.user.value.userId);
     const dispatch = useDispatch();
+    const [modalVisible, setModalVisible] = useState(false);
 
     const handleInit = () => {
         init()
@@ -45,11 +46,13 @@ export default function Account({ navigation }) {
 
     return (
         <>
+            <PicSelectModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
+
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Account</Text>
+                <Text style={styles.headerTitle}>{`Account (debug)`}</Text>
             </View>
             <ScrollView style={styles.scrollViewContainer}>
-                <TouchableOpacity style={styles.menuElement} onPress={() => dispatch(setImageURI())}>
+                <TouchableOpacity style={styles.menuElement} onPress={() => setModalVisible(true)}>
                     <Text style={styles.menuElementText}>Change profile picture</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.menuElement} onPress={handleInit}>
