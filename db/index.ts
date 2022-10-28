@@ -1,8 +1,9 @@
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabase("users.db");
+//const db = SQLite.openDatabase("users.db");
 
 export const init = () => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -17,10 +18,12 @@ export const init = () => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
 
 export const addUser = (id: string, email: string, picture = "") => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -35,10 +38,12 @@ export const addUser = (id: string, email: string, picture = "") => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
 
 export const updatePicture = (id: string, picture = "") => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -53,10 +58,12 @@ export const updatePicture = (id: string, picture = "") => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
 
 export const fetchUsers = () => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -71,10 +78,12 @@ export const fetchUsers = () => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
 
 export const getUser = (id: string) => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -89,10 +98,12 @@ export const getUser = (id: string) => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
 
 export const deleteTable = () => {
+    const db = SQLite.openDatabase("users.db");
     const promise = new Promise((resolve: any, reject: any) => {
         db.transaction(tx => {
             tx.executeSql(
@@ -107,5 +118,6 @@ export const deleteTable = () => {
             );
         });
     });
+    db.closeAsync;
     return promise;
 };
