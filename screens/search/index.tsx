@@ -25,7 +25,7 @@ export default function Search({ navigation }) {
         setEmptyResult(false);
         text === "" && setSearchResult([]);
         if (text !== "") {
-            let array = trips.filter((trip: Trip) => trip.text.includes(text));
+            let array = trips.filter((trip: Trip) => trip.text.toLowerCase().includes(text.toLowerCase()));
             setSearchResult(array);
             !array[0] && setEmptyResult(true);
         }
